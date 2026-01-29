@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/admin-dashboard.css">
+</head>
+
+<body class="dashboard">
+
+<script>
+if (!localStorage.getItem("adminLoggedIn")) {
+    window.location.href = "admin-login.html";
+}
+</script>
+
+<div class="navbar">
+    <h2>Admin Dashboard</h2>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+</div>
+
+<div class="cards">
+    <div class="card">
+        <p>Total Complaints</p>
+        <h2 id="total">0</h2>
+    </div>
+
+    <div class="card">
+        <p>Submitted</p>
+        <h2 id="submitted">0</h2>
+    </div>
+
+    <div class="card">
+        <p>Investigating</p>
+        <h2 id="investigating">0</h2>
+    </div>
+
+    <div class="card">
+        <p>Resolved</p>
+        <h2 id="resolved">0</h2>
+    </div>
+</div>
+
+<div class="table-box">
+    <h2 style="margin-bottom:15px;">Complaint Records</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+</div>
+</body>
+</html>
