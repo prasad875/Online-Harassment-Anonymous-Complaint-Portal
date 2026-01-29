@@ -1,0 +1,299 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: rgb(9, 9, 9);
+
+  background: linear-gradient(
+    -45deg,
+#6ccec6 , /* Teal */
+#f180d5  , /* Deep green */
+#a2f86d   ,/* Dark teal */
+#134e4a   /* Muted green */
+
+  );
+  background-size: 400% 400%;
+  animation: gradientBG 12s ease infinite;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: #7a48e4;
+}
+
+.navbar h2 {
+  margin: 0;
+}
+
+.navbar a {
+  color: rgb(5, 5, 5);
+  margin-left: 15px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* ================= HERO ================= */
+.hero {
+  padding: 60px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.hero-text h1 {
+  font-size: 38px;
+  margin-bottom: 10px;
+}
+
+.hero-text p {
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+/* Buttons */
+.hero-buttons {
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 12px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-block;
+  margin-right: 10px;
+  cursor: pointer;
+  border: none;
+}
+
+.primary {
+  background: #dc2626;
+  color: white;
+}
+
+.secondary {
+  background: white;
+  color: #0f766e;
+}
+
+/* Trust badges */
+.trust-badges {
+  margin-top: 18px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.trust-badges span {
+  background: rgba(255,255,255,0.15);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+}
+
+/* ================= HERO VISUAL ================= */
+.hero-visual {
+  position: relative;
+  height: 420px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-img {
+  width: 280px;
+  border-radius: 18px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.4);
+  z-index: 2;
+}
+
+.floating-img {
+  position: absolute;
+  width: 90px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+  animation: float 4s ease-in-out infinite;
+}
+
+.floating-img.one {
+  top: 20px;
+  left: 30px;
+}
+
+.floating-img.two {
+  bottom: 30px;
+  right: 40px;
+}
+
+.floating-img.three {
+  top: 45%;
+  right: -10px;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+/* ================= STATS ================= */
+.stats-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 900px;
+  margin: 30px auto;
+}
+
+.stat {
+  background: rgba(255,255,255,0.12);
+  padding: 18px;
+  border-radius: 14px;
+  text-align: center;
+}
+
+/* ================= CONTAINER ================= */
+.container {
+  background: white;
+  color: #0f172a;
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.container.wide {
+  max-width: 1000px;
+}
+
+/* ================= FORMS ================= */
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ================= OVERVIEW ================= */
+.overview {
+  background: #f8fafc;
+  color: #0f172a;
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.overview h2 {
+  color: #0f766e;
+}
+
+/* Cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+
+.card:hover img {
+  transform: scale(1.05);
+}
+
+.card h3 {
+  margin-top: 12px;
+  color: #0f766e;
+}
+
+/* ================= TABLE ================= */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* ================= STATS (ADMIN) ================= */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin: 30px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #0f766e, #115e59);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+/* ================= FOOTER ================= */
+footer {
+  text-align: center;
+  padding: 18px;
+  background: #0f766e;
+  color: white;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+.stat, .container, .card {
+  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.12);
+}
