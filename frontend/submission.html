@@ -24,21 +24,6 @@
 
 <body>
 
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <a href="index.html" class="nav-brand">
-      <div class="logo-icon">
-        <i class="fa-solid fa-shield-halved"></i>
-      </div>
-      <h2>She-Box</h2>
-    </a>
-    <nav class="nav-links">
-      <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
-      <a href="submission.html" class="active"><i class="fa-solid fa-pen-to-square"></i> Register</a>
-      <a href="track.html"><i class="fa-solid fa-magnifying-glass"></i> Track</a>
-    </nav>
-  </header>
-
   <!-- Background Shapes -->
   <div class="bg-shapes">
     <div class="shape shape-1"></div>
@@ -47,7 +32,13 @@
   </div>
 
   <!-- MAIN CONTENT -->
-  <main class="main-container">
+  <main class="main-container no-nav">
+
+    <!-- Back to Home Link -->
+    <a href="index.html" class="back-home">
+      <i class="fa-solid fa-arrow-left"></i>
+      Back to Home
+    </a>
 
     <!-- Left Side Info -->
     <aside class="info-panel">
@@ -118,7 +109,7 @@
             <div class="progress-line"></div>
             <div class="progress-step" data-step="2">
               <div class="step-circle">2</div>
-              <span>Details</span>
+              <span>Evidence</span>
             </div>
             <div class="progress-line"></div>
             <div class="progress-step" data-step="3">
@@ -187,14 +178,51 @@
             </div>
           </div>
 
-          <!-- Step 2: Additional Details -->
+          <!-- Step 2: Evidence Upload -->
           <div class="form-step" id="step2">
+
+            <!-- Evidence Upload Section - Now More Prominent -->
+            <div class="upload-section">
+              <div class="upload-header">
+                <div class="upload-icon">
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                </div>
+                <h3>Upload Evidence</h3>
+                <p>Add photos, screenshots, documents or any other evidence to support your complaint</p>
+              </div>
+
+              <div class="file-upload-area" id="fileUploadArea">
+                <input type="file" id="file" multiple accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx,.mp4,.mp3,.webp">
+                <div class="upload-content">
+                  <div class="upload-icon-large">
+                    <i class="fa-solid fa-folder-plus"></i>
+                  </div>
+                  <h4>Drag & Drop Files Here</h4>
+                  <p>or click to browse from your device</p>
+                  <div class="file-types">
+                    <span><i class="fa-solid fa-image"></i> Images</span>
+                    <span><i class="fa-solid fa-file-pdf"></i> PDF</span>
+                    <span><i class="fa-solid fa-file-word"></i> DOC</span>
+                    <span><i class="fa-solid fa-video"></i> Video</span>
+                    <span><i class="fa-solid fa-music"></i> Audio</span>
+                  </div>
+                  <small>Maximum file size: 25MB per file</small>
+                </div>
+              </div>
+
+              <!-- Uploaded Files List -->
+              <div class="uploaded-files" id="uploadedFiles" style="display: none;">
+                <h4><i class="fa-solid fa-paperclip"></i> Uploaded Files</h4>
+                <div class="file-list" id="fileList"></div>
+              </div>
+            </div>
+
             <div class="form-group">
               <label for="platform">
                 <i class="fa-solid fa-globe"></i>
                 Platform/Website (if applicable)
               </label>
-              <input type="text" id="platform" placeholder="e.g., Facebook, Instagram, Twitter, etc.">
+              <input type="text" id="platform" placeholder="e.g., Facebook, Instagram, Twitter, WhatsApp, etc.">
             </div>
 
             <div class="form-group">
@@ -203,23 +231,7 @@
                 Accused Information (if known)
               </label>
               <textarea id="accusedInfo"
-                placeholder="Any information about the accused - name, username, profile link, etc. (Optional)"></textarea>
-            </div>
-
-            <div class="form-group">
-              <label for="file">
-                <i class="fa-solid fa-paperclip"></i>
-                Upload Evidence (Optional)
-              </label>
-              <div class="file-upload" id="fileUploadArea">
-                <input type="file" id="file" multiple accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
-                <div class="file-upload-content">
-                  <i class="fa-solid fa-cloud-arrow-up"></i>
-                  <p>Drag and drop files here or <span>browse</span></p>
-                  <small>Supported: JPG, PNG, PDF, DOC (Max 10MB each)</small>
-                </div>
-                <div class="file-list" id="fileList"></div>
-              </div>
+                placeholder="Any information about the accused - name, username, profile link, phone number, etc. (Optional)"></textarea>
             </div>
 
             <div class="form-navigation">
@@ -362,13 +374,15 @@
       charCount.textContent = description.value.length;
     });
 
-    // File upload handling
+    // Enhanced File upload handling
     const fileInput = document.getElementById('file');
     const fileList = document.getElementById('fileList');
     const fileUploadArea = document.getElementById('fileUploadArea');
+    const uploadedFilesSection = document.getElementById('uploadedFiles');
+    let uploadedFiles = [];
 
     fileInput?.addEventListener('change', () => {
-      updateFileList();
+      handleFiles(fileInput.files);
     });
 
     fileUploadArea?.addEventListener('dragover', (e) => {
@@ -383,22 +397,71 @@
     fileUploadArea?.addEventListener('drop', (e) => {
       e.preventDefault();
       fileUploadArea.classList.remove('dragover');
-      fileInput.files = e.dataTransfer.files;
-      updateFileList();
+      handleFiles(e.dataTransfer.files);
     });
 
+    function handleFiles(files) {
+      Array.from(files).forEach(file => {
+        // Check file size (25MB max)
+        if (file.size > 25 * 1024 * 1024) {
+          alert(`File "${file.name}" is too large. Maximum size is 25MB.`);
+          return;
+        }
+        uploadedFiles.push(file);
+      });
+      updateFileList();
+    }
+
     function updateFileList() {
+      if (uploadedFiles.length === 0) {
+        uploadedFilesSection.style.display = 'none';
+        return;
+      }
+
+      uploadedFilesSection.style.display = 'block';
       fileList.innerHTML = '';
-      Array.from(fileInput.files).forEach(file => {
+
+      uploadedFiles.forEach((file, index) => {
         const fileItem = document.createElement('div');
         fileItem.className = 'file-item';
+
+        const icon = getFileIcon(file.type);
+        const size = formatFileSize(file.size);
+
         fileItem.innerHTML = `
-        <i class="fa-solid fa-file"></i>
-        <span>${file.name}</span>
-        <span class="file-size">${(file.size / 1024).toFixed(1)} KB</span>
-      `;
+          <div class="file-info">
+            <i class="${icon}"></i>
+            <div class="file-details">
+              <span class="file-name">${file.name}</span>
+              <span class="file-size">${size}</span>
+            </div>
+          </div>
+          <button type="button" class="remove-file" onclick="removeFile(${index})">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        `;
         fileList.appendChild(fileItem);
       });
+    }
+
+    function getFileIcon(type) {
+      if (type.startsWith('image/')) return 'fa-solid fa-image';
+      if (type.startsWith('video/')) return 'fa-solid fa-video';
+      if (type.startsWith('audio/')) return 'fa-solid fa-music';
+      if (type.includes('pdf')) return 'fa-solid fa-file-pdf';
+      if (type.includes('word') || type.includes('document')) return 'fa-solid fa-file-word';
+      return 'fa-solid fa-file';
+    }
+
+    function formatFileSize(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+      return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+    }
+
+    function removeFile(index) {
+      uploadedFiles.splice(index, 1);
+      updateFileList();
     }
 
     // Copy tracking ID

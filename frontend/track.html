@@ -1,43 +1,379 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>Track Complaint</title>
-  <link rel="stylesheet" href="css/index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Complaint | She-Box Portal</title>
+  <meta name="description" content="Track your complaint status using your unique tracking ID.">
+
+  <link rel="stylesheet" href="css/track.css">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Axios for API calls -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
+
 <body>
 
-<header class="navbar">
-  <h2>online harassment</h2>
-  <nav>
-    <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
-    <a href="submit.html"><i class="fa-solid fa-pen"></i> Register Complaint</a>
-    <a href="track.html"><i class="fa-solid fa-magnifying-glass"></i> Track Complaint</a>
-    <a href="admin.html"><i class="fa-solid fa-user-shield"></i> Admin</a>
-  </nav>
-</header>
-
-<div class="container">
-  <h2>Track Complaint</h2>
-
-  <input id="cid" placeholder="Enter Complaint ID">
-  <button onclick="trackComplaint()" class="btn primary">Search</button>
-
-  <div id="result"></div>
-
-  <!-- MAP SECTION -->
-  <div id="mapBox" style="display:none; margin-top:20px;">
-    <h3>Incident Location</h3>
-    <iframe
-      id="mapFrame"
-      width="100%"
-      height="250"
-      style="border:0; border-radius:10px;"
-      loading="lazy">
-    </iframe>
+  <!-- Background -->
+  <div class="bg-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
   </div>
-</div>
 
-<script src="js/app.js"></script>
+  <!-- MAIN CONTENT -->
+  <main class="main-container no-nav">
+
+    <!-- Back to Home Link -->
+    <a href="index.html" class="back-home">
+      <i class="fa-solid fa-arrow-left"></i>
+      Back to Home
+    </a>
+
+    <!-- Track Section -->
+    <section class="track-section">
+      <div class="track-header">
+        <div class="header-icon">
+          <i class="fa-solid fa-magnifying-glass-chart"></i>
+        </div>
+        <h1>Track Your Complaint</h1>
+        <p>Enter your unique complaint ID to check the current status of your case</p>
+      </div>
+
+      <!-- Search Box -->
+      <div class="search-container">
+        <div class="search-box">
+          <div class="input-wrapper">
+            <i class="fa-solid fa-ticket"></i>
+            <input type="text" id="cid" placeholder="Enter your Complaint ID (e.g., COMP-XXXXXX)" autocomplete="off">
+          </div>
+          <button onclick="trackComplaint()" class="btn-search" id="searchBtn">
+            <i class="fa-solid fa-search"></i>
+            <span>Track Status</span>
+          </button>
+        </div>
+        <p class="search-hint">
+          <i class="fa-solid fa-info-circle"></i>
+          Your complaint ID was provided when you submitted your complaint
+        </p>
+      </div>
+
+      <!-- Result Section -->
+      <div id="resultSection" class="result-section" style="display: none;">
+
+        <!-- Status Timeline -->
+        <div class="status-card">
+          <div class="card-header">
+            <div class="complaint-badge">
+              <i class="fa-solid fa-hashtag"></i>
+              <span id="displayId">COMP-XXXXXX</span>
+            </div>
+            <div class="status-badge" id="statusBadge">
+              <i class="fa-solid fa-clock"></i>
+              <span>Pending</span>
+            </div>
+          </div>
+
+          <!-- Timeline -->
+          <div class="timeline">
+            <div class="timeline-item completed" id="step1">
+              <div class="timeline-icon">
+                <i class="fa-solid fa-paper-plane"></i>
+              </div>
+              <div class="timeline-content">
+                <h4>Complaint Submitted</h4>
+                <p>Your complaint has been received</p>
+                <span class="timeline-date" id="submitDate">--</span>
+              </div>
+            </div>
+
+            <div class="timeline-item" id="step2">
+              <div class="timeline-icon">
+                <i class="fa-solid fa-clipboard-check"></i>
+              </div>
+              <div class="timeline-content">
+                <h4>Under Review</h4>
+                <p>Case is being reviewed by our team</p>
+                <span class="timeline-date" id="reviewDate">--</span>
+              </div>
+            </div>
+
+            <div class="timeline-item" id="step3">
+              <div class="timeline-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </div>
+              <div class="timeline-content">
+                <h4>Investigation</h4>
+                <p>Active investigation in progress</p>
+                <span class="timeline-date" id="investigateDate">--</span>
+              </div>
+            </div>
+
+            <div class="timeline-item" id="step4">
+              <div class="timeline-icon">
+                <i class="fa-solid fa-circle-check"></i>
+              </div>
+              <div class="timeline-content">
+                <h4>Resolved</h4>
+                <p>Case has been resolved</p>
+                <span class="timeline-date" id="resolveDate">--</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Details Card -->
+        <div class="details-card">
+          <h3><i class="fa-solid fa-file-lines"></i> Complaint Details</h3>
+
+          <div class="details-grid">
+            <div class="detail-item">
+              <label>Category</label>
+              <span id="detailCategory">--</span>
+            </div>
+            <div class="detail-item">
+              <label>Priority</label>
+              <span id="detailPriority" class="priority-badge">--</span>
+            </div>
+            <div class="detail-item">
+              <label>Date Filed</label>
+              <span id="detailDate">--</span>
+            </div>
+            <div class="detail-item">
+              <label>Location</label>
+              <span id="detailLocation">--</span>
+            </div>
+          </div>
+
+          <div class="detail-description">
+            <label>Description</label>
+            <p id="detailDescription">--</p>
+          </div>
+        </div>
+
+        <!-- Map Section -->
+        <div id="mapBox" class="map-card" style="display: none;">
+          <h3><i class="fa-solid fa-location-dot"></i> Incident Location</h3>
+          <div class="map-container">
+            <iframe id="mapFrame" width="100%" height="300" style="border:0; border-radius: 12px;" loading="lazy"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <button class="btn btn-secondary" onclick="printDetails()">
+            <i class="fa-solid fa-print"></i> Print Details
+          </button>
+          <button class="btn btn-primary" onclick="downloadReport()">
+            <i class="fa-solid fa-download"></i> Download Report
+          </button>
+        </div>
+      </div>
+
+      <!-- No Result State -->
+      <div id="noResult" class="no-result" style="display: none;">
+        <div class="no-result-icon">
+          <i class="fa-solid fa-circle-exclamation"></i>
+        </div>
+        <h3>Complaint Not Found</h3>
+        <p>We couldn't find a complaint with the ID you entered. Please check and try again.</p>
+        <button class="btn btn-secondary" onclick="resetSearch()">
+          <i class="fa-solid fa-arrow-rotate-left"></i> Try Again
+        </button>
+      </div>
+
+      <!-- Loading State -->
+      <div id="loadingState" class="loading-state" style="display: none;">
+        <div class="loader"></div>
+        <p>Searching for your complaint...</p>
+      </div>
+
+    </section>
+
+    <!-- Info Cards -->
+    <section class="info-section">
+      <div class="info-cards">
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <h4>Secure Tracking</h4>
+          <p>Your complaint details are encrypted and only accessible with your unique ID</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fa-solid fa-clock"></i>
+          </div>
+          <h4>Real-time Updates</h4>
+          <p>Status is updated in real-time as your case progresses through investigation</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fa-solid fa-headset"></i>
+          </div>
+          <h4>24/7 Support</h4>
+          <p>Need help? Contact our support team anytime at 1800-XXX-XXXX</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2026 She-Box Online Complaint Portal. All rights reserved.</p>
+    <small>For academic demonstration purposes only</small>
+  </footer>
+
+  <script>
+    // Track complaint function
+    function trackComplaint() {
+      const cid = document.getElementById('cid').value.trim();
+
+      if (!cid) {
+        alert('Please enter a complaint ID');
+        return;
+      }
+
+      // Show loading
+      document.getElementById('loadingState').style.display = 'flex';
+      document.getElementById('resultSection').style.display = 'none';
+      document.getElementById('noResult').style.display = 'none';
+
+      // Simulate API call (replace with actual API)
+      setTimeout(() => {
+        document.getElementById('loadingState').style.display = 'none';
+
+        // Demo data - replace with actual API response
+        const demoData = {
+          id: cid,
+          category: 'Cyber Bullying',
+          priority: 'High',
+          status: 'Investigating',
+          dateFiled: '2026-01-25',
+          location: 'New Delhi, India',
+          description: 'Received threatening messages and harassment on social media platform. The accused has been sending abusive content repeatedly.',
+          timeline: {
+            submitted: '2026-01-25 10:30 AM',
+            review: '2026-01-26 02:15 PM',
+            investigate: '2026-01-27 09:00 AM',
+            resolved: null
+          }
+        };
+
+        // Check if valid (demo: accept any ID with 4+ characters)
+        if (cid.length >= 4) {
+          showResult(demoData);
+        } else {
+          document.getElementById('noResult').style.display = 'flex';
+        }
+      }, 1500);
+    }
+
+    function showResult(data) {
+      document.getElementById('resultSection').style.display = 'block';
+
+      // Update display
+      document.getElementById('displayId').textContent = data.id;
+      document.getElementById('detailCategory').textContent = data.category;
+      document.getElementById('detailPriority').textContent = data.priority;
+      document.getElementById('detailPriority').className = 'priority-badge ' + data.priority.toLowerCase();
+      document.getElementById('detailDate').textContent = data.dateFiled;
+      document.getElementById('detailLocation').textContent = data.location;
+      document.getElementById('detailDescription').textContent = data.description;
+
+      // Update status badge
+      const statusBadge = document.getElementById('statusBadge');
+      statusBadge.className = 'status-badge ' + data.status.toLowerCase();
+      statusBadge.innerHTML = `<i class="fa-solid fa-${getStatusIcon(data.status)}"></i><span>${data.status}</span>`;
+
+      // Update timeline
+      updateTimeline(data.status, data.timeline);
+
+      // Show map if location available
+      if (data.location) {
+        showMap(data.location);
+      }
+    }
+
+    function getStatusIcon(status) {
+      const icons = {
+        'Submitted': 'paper-plane',
+        'Under Review': 'clipboard-check',
+        'Investigating': 'magnifying-glass',
+        'Resolved': 'circle-check'
+      };
+      return icons[status] || 'clock';
+    }
+
+    function updateTimeline(status, timeline) {
+      const steps = ['Submitted', 'Under Review', 'Investigating', 'Resolved'];
+      const currentIndex = steps.indexOf(status);
+
+      for (let i = 1; i <= 4; i++) {
+        const step = document.getElementById(`step${i}`);
+        step.classList.remove('completed', 'active');
+
+        if (i <= currentIndex + 1) {
+          step.classList.add('completed');
+        }
+        if (i === currentIndex + 1) {
+          step.classList.add('active');
+        }
+      }
+
+      // Update dates
+      if (timeline.submitted) document.getElementById('submitDate').textContent = timeline.submitted;
+      if (timeline.review) document.getElementById('reviewDate').textContent = timeline.review;
+      if (timeline.investigate) document.getElementById('investigateDate').textContent = timeline.investigate;
+      if (timeline.resolved) document.getElementById('resolveDate').textContent = timeline.resolved;
+    }
+
+    function showMap(location) {
+      const mapBox = document.getElementById('mapBox');
+      const mapFrame = document.getElementById('mapFrame');
+
+      mapFrame.src = `https://maps.google.com/maps?q=${encodeURIComponent(location)}&output=embed`;
+      mapBox.style.display = 'block';
+    }
+
+    function resetSearch() {
+      document.getElementById('cid').value = '';
+      document.getElementById('noResult').style.display = 'none';
+      document.getElementById('resultSection').style.display = 'none';
+      document.getElementById('cid').focus();
+    }
+
+    function printDetails() {
+      window.print();
+    }
+
+    function downloadReport() {
+      alert('Report download feature coming soon!');
+    }
+
+    // Enter key to search
+    document.getElementById('cid')?.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        trackComplaint();
+      }
+    });
+  </script>
+
 </body>
+
 </html>
