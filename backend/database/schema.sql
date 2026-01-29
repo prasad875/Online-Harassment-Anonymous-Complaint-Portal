@@ -1,40 +1,29 @@
--- =========================================
--- Online Harassment & Anonymous Complaint Portal
--- Database Schema (Member-1)
--- =========================================
+CREATE DATABASE harassment_db;
+USE harassment_db;
 
-CREATE DATABASE IF NOT EXISTS harassment_portal;
-USE harassment_portal;
-
--- Complaints Table
 CREATE TABLE complaints (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  complaint_id VARCHAR(50) NOT NULL UNIQUE,
-  category VARCHAR(100) NOT NULL,
-  description TEXT NOT NULL,
-  incident_date DATE,
-  location VARCHAR(255),
-  status ENUM('Pending', 'In Review', 'Resolved') DEFAULT 'Pending',
+  complaint_id VARCHAR(50) UNIQUE,
+  description TEXT,
+  category VARCHAR(100),
+  is_anonymous BOOLEAN,
+  status VARCHAR(50),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Complaint Files Table
-CREATE TABLE complaint_files (
+CREATE TABLE files (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  complaint_id VARCHAR(50) NOT NULL,
-  file_path VARCHAR(255) NOT NULL,
-  uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  CONSTRAINT fk_complaint_files
-    FOREIGN KEY (complaint_id)
-    REFERENCES complaints(complaint_id)
-    ON DELETE CASCADE
+  complaint_id VARCHAR(50),
+  filename VARCHAR(255),
+  filepath VARCHAR(255),
+  filetype VARCHAR(50),
+  uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Admin Users Table
-CREATE TABLE admin_users (
+CREATE TABLE status_history (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(100) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL,
-  role VARCHAR(50) DEFAULT 'admin',
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  complaint_id VARCHAR(50),
+  status VARCHAR(50),
+  note TEXT,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

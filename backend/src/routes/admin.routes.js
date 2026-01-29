@@ -1,14 +1,9 @@
-const express = require("express");
+import express from "express";
+import { getAllComplaints, updateStatus } from "../controllers/admin.controller.js";
+
 const router = express.Router();
-const adminController = require("../controllers/admin.controller");
-const adminAuth = require("../middlewares/admin.auth");
 
-router.post("/login", adminController.adminLogin);
-router.get("/complaints", adminAuth, adminController.getAllComplaints);
-router.put(
-  "/complaints/:complaintId/status",
-  adminAuth,
-  adminController.updateComplaintStatus
-);
+router.get("/complaints", getAllComplaints);
+router.put("/complaints/:complaintId/status", updateStatus);
 
-module.exports = router;
+export default router;

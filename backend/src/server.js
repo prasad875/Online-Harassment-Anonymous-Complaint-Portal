@@ -1,7 +1,5 @@
-import app from "./src/app.js";
+import app from "./app.js";
 
-const PORT = 3000;
-
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+app.listen(3000, () => {
+  console.log("🚀 Backend running on port 3000");
 });
