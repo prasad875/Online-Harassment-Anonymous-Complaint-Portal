@@ -1,125 +1,351 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>She-Box | Online Complaint Portal</title>
+  <meta name="description"
+    content="A secure government platform to report online harassment, cyber bullying, and digital abuse anonymously and safely.">
 
   <link rel="stylesheet" href="./css/index.css">
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
   <!-- Font Awesome -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<header class="navbar">
-  <h2>online harassment</h2>
-  <nav>
-    <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
-    <a href="submission.html"><i class="fa-solid fa-pen"></i> Register Complaint</a>
-    <a href="track.html"><i class="fa-solid fa-magnifying-glass"></i> Track Complaint</a>
-    <a href="admin-dashboard.html"><i class="fa-solid fa-user-shield"></i> Admin</a>
-  </nav>
-</header>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="nav-brand">
+      <div class="logo-icon">
+        <i class="fa-solid fa-shield-halved"></i>
+      </div>
+      <h2>She-Box</h2>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html" class="active"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="submission.html"><i class="fa-solid fa-pen-to-square"></i> Register Complaint</a>
+      <a href="track.html"><i class="fa-solid fa-magnifying-glass"></i> Track Status</a>
+      <a href="admin-login.html" class="nav-admin"><i class="fa-solid fa-user-shield"></i> Admin</a>
+    </nav>
+    <button class="mobile-toggle" id="mobileToggle">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </header>
 
-<!-- HERO -->
-<section class="hero hero-grid">
-
-  <div class="hero-text">
-    <h1>Online Complaint Management System</h1>
-    <p>
-      A secure government platform to report online harassment,
-      cyber bullying, digital abuse and public safety issues
-      anonymously and safely.
-    </p>
-
-    <div class="hero-buttons">
-      <a href="submit.html" class="btn primary">
-        <i class="fa-solid fa-pen"></i> Register Complaint
-      </a>
-      <a href="track.html" class="btn secondary">
-        <i class="fa-solid fa-magnifying-glass"></i> Track Complaint
-      </a>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
     </div>
 
-    <div class="trust-badges">
-      <span><i class="fa-solid fa-shield-halved"></i> Secure</span>
-      <span><i class="fa-solid fa-user-secret"></i> Anonymous</span>
-      <span><i class="fa-solid fa-clock"></i> 24×7 Access</span>
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fa-solid fa-lock"></i>
+          <span>Government Verified Portal</span>
+        </div>
+
+        <h1>Report Online Harassment <span class="gradient-text">Safely & Anonymously</span></h1>
+
+        <p class="hero-desc">
+          A secure government platform to report online harassment, cyber bullying,
+          digital abuse and public safety issues. Your identity is always protected.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="submission.html" class="btn btn-primary">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <span>Register Complaint</span>
+          </a>
+          <a href="track.html" class="btn btn-secondary">
+            <i class="fa-solid fa-search"></i>
+            <span>Track Complaint</span>
+          </a>
+        </div>
+
+        <div class="trust-badges">
+          <div class="badge">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>256-bit Encrypted</span>
+          </div>
+          <div class="badge">
+            <i class="fa-solid fa-user-secret"></i>
+            <span>100% Anonymous</span>
+          </div>
+          <div class="badge">
+            <i class="fa-solid fa-clock"></i>
+            <span>24×7 Available</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="visual-card main-card">
+          <div class="card-glow"></div>
+          <div class="card-content">
+            <div class="card-icon">
+              <i class="fa-solid fa-hand-holding-heart"></i>
+            </div>
+            <h3>Safe Space</h3>
+            <p>Report incidents without fear</p>
+          </div>
+        </div>
+
+        <div class="floating-card card-1">
+          <i class="fa-solid fa-check-circle"></i>
+          <span>Verified</span>
+        </div>
+
+        <div class="floating-card card-2">
+          <i class="fa-solid fa-lock"></i>
+          <span>Secure</span>
+        </div>
+
+        <div class="floating-card card-3">
+          <i class="fa-solid fa-gavel"></i>
+          <span>Legal Action</span>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="hero-visual">
-    <img class="main-img"
-         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSA3vD81k3E9k-hvUHyhonzpavsxrk_1JCug&s"
-         alt="Online Harassment">
+  <!-- STATS -->
+  <section class="stats-section">
+    <div class="stats-container">
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fa-solid fa-file-lines"></i>
+        </div>
+        <div class="stat-info">
+          <h3 class="stat-number" data-target="10000">10,000+</h3>
+          <p>Complaints Filed</p>
+        </div>
+      </div>
 
-    <img class="floating-img one"
-         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-9w8SDtGh_T-wLydZNek0ZvANhd2rNqtrlw&s">
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fa-solid fa-check-double"></i>
+        </div>
+        <div class="stat-info">
+          <h3 class="stat-number">92%</h3>
+          <p>Resolution Rate</p>
+        </div>
+      </div>
 
-    <img class="floating-img two"
-         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCy9OH09oQWeVt-hN1SEd_x9Vz-o4lfpWFHw&s">
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fa-solid fa-user-shield"></i>
+        </div>
+        <div class="stat-info">
+          <h3 class="stat-number">100%</h3>
+          <p>Confidential</p>
+        </div>
+      </div>
 
-    <img class="floating-img three"
-         src="https://images.unsplash.com/photo-1563206767-5b18f218e8de?auto=format&fit=crop&w=400&q=80">
-  </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        <div class="stat-info">
+          <h3 class="stat-number">48h</h3>
+          <p>Avg. Response Time</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-</section>
-
-<!-- STATS -->
-<section class="stats-strip">
-  <div class="stat">
-    <h3>10K+</h3>
-    <p>Complaints Filed</p>
-  </div>
-  <div class="stat">
-    <h3>92%</h3>
-    <p>Resolved</p>
-  </div>
-  <div class="stat">
-    <h3>100%</h3>
-    <p>Confidential</p>
-  </div>
-</section>
-
-<!-- OVERVIEW -->
-<section class="overview">
-  <h2>Online Issues Covered</h2>
-
-  <div class="cards">
-    <div class="card">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHYtim_WVe8fIf8iQ07fy5LXFhJNvdRE9moA&s" alt="Cyber Bullying">
-      <h3>Cyber Bullying</h3>
-      <p>Threats and online abuse.</p>
+  <!-- FEATURES -->
+  <section class="features-section">
+    <div class="section-header">
+      <span class="section-badge">What We Cover</span>
+      <h2>Types of Incidents We Handle</h2>
+      <p>Report any form of online harassment or digital abuse safely</p>
     </div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=400&q=80">
-      <h3>Online Harassment</h3>
-      <p>Abusive digital behavior.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fa-solid fa-comments"></i>
+        </div>
+        <h3>Cyber Bullying</h3>
+        <p>Online threats, intimidation, and persistent harassment on social media platforms.</p>
+        <div class="feature-hover"></div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fa-solid fa-user-xmark"></i>
+        </div>
+        <h3>Online Harassment</h3>
+        <p>Abusive digital behavior, stalking, and unwanted communications online.</p>
+        <div class="feature-hover"></div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fa-solid fa-masks-theater"></i>
+        </div>
+        <h3>Fake Accounts</h3>
+        <p>Identity theft, impersonation, and trolling using fake profiles.</p>
+        <div class="feature-hover"></div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fa-solid fa-image"></i>
+        </div>
+        <h3>Image Abuse</h3>
+        <p>Non-consensual sharing of intimate images and morphed photos.</p>
+        <div class="feature-hover"></div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fa-solid fa-credit-card"></i>
+        </div>
+        <h3>Financial Fraud</h3>
+        <p>Online scams, extortion, and financial manipulation.</p>
+        <div class="feature-hover"></div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <h3>Defamation</h3>
+        <p>False accusations, reputation damage, and character assassination.</p>
+        <div class="feature-hover"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="process-section">
+    <div class="section-header">
+      <span class="section-badge">How It Works</span>
+      <h2>Simple & Secure Process</h2>
+      <p>Report incidents in three easy steps</p>
     </div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1563206767-5b18f218e8de?auto=format&fit=crop&w=400&q=80">
-      <h3>Fake Accounts</h3>
-      <p>Identity misuse & trolling.</p>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-number">01</div>
+        <div class="step-content">
+          <h3>Submit Complaint</h3>
+          <p>Fill out the secure form with incident details. Upload evidence if available.</p>
+        </div>
+        <div class="step-icon">
+          <i class="fa-solid fa-file-pen"></i>
+        </div>
+      </div>
+
+      <div class="process-connector"></div>
+
+      <div class="process-step">
+        <div class="step-number">02</div>
+        <div class="step-content">
+          <h3>Get Tracking ID</h3>
+          <p>Receive a unique anonymous ID to track your complaint status anytime.</p>
+        </div>
+        <div class="step-icon">
+          <i class="fa-solid fa-ticket"></i>
+        </div>
+      </div>
+
+      <div class="process-connector"></div>
+
+      <div class="process-step">
+        <div class="step-number">03</div>
+        <div class="step-content">
+          <h3>Action Taken</h3>
+          <p>Authorities investigate and take appropriate legal action on your behalf.</p>
+        </div>
+        <div class="step-icon">
+          <i class="fa-solid fa-scale-balanced"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="cta-container">
+      <div class="cta-content">
+        <h2>Ready to Report an Incident?</h2>
+        <p>Your safety matters. Take the first step towards justice today.</p>
+        <a href="submission.html" class="btn btn-cta">
+          <i class="fa-solid fa-arrow-right"></i>
+          <span>File a Complaint Now</span>
+        </a>
+      </div>
+      <div class="cta-visual">
+        <div class="cta-icon-container">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>She-Box</span>
+        </div>
+        <p>Secure government portal for online harassment complaints</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <a href="index.html">Home</a>
+          <a href="submission.html">Register Complaint</a>
+          <a href="track.html">Track Status</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Guidelines</a>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="#">Help Center</a>
+          <a href="#">Contact Us</a>
+          <a href="#">FAQs</a>
+        </div>
+      </div>
     </div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?auto=format&fit=crop&w=400&q=80">
-      <h3>Anonymous Reporting</h3>
-      <p>Identity always protected.</p>
+    <div class="footer-bottom">
+      <p>© 2026 She-Box Online Complaint Portal. All rights reserved.</p>
+      <small>For academic demonstration purposes only</small>
     </div>
-  </div>
-</section>
+  </footer>
 
-<!-- FOOTER -->
-<footer>
-  © 2026 She-Box Online Complaint Portal <br>
-  <small>For academic demonstration only</small>
-</footer>
+  <script>
+    // Mobile menu toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    mobileToggle?.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
 
 </body>
+
 </html>

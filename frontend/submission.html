@@ -1,53 +1,414 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>Submit Complaint</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Complaint | She-Box Portal</title>
+  <meta name="description"
+    content="Submit your complaint anonymously and securely through our online harassment reporting system.">
+
   <link rel="stylesheet" href="css/submission.css">
-  <script src="js/submission.js"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <script src="js/submission.js" defer></script>
 </head>
 
 <body>
 
-<div class="form-container">
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <a href="index.html" class="nav-brand">
+      <div class="logo-icon">
+        <i class="fa-solid fa-shield-halved"></i>
+      </div>
+      <h2>She-Box</h2>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="submission.html" class="active"><i class="fa-solid fa-pen-to-square"></i> Register</a>
+      <a href="track.html"><i class="fa-solid fa-magnifying-glass"></i> Track</a>
+    </nav>
+  </header>
 
-  <h2>Submit a Complaint</h2>
+  <!-- Background Shapes -->
+  <div class="bg-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
 
-  <form id="complaintForm">
+  <!-- MAIN CONTENT -->
+  <main class="main-container">
 
-    <label for="description">Description of Incident</label>
-    <textarea id="description" placeholder="Describe what happened..." required></textarea>
+    <!-- Left Side Info -->
+    <aside class="info-panel">
+      <div class="info-content">
+        <div class="info-icon">
+          <i class="fa-solid fa-file-shield"></i>
+        </div>
+        <h2>Submit Your Complaint</h2>
+        <p>Your information is protected with end-to-end encryption. Report incidents safely and anonymously.</p>
 
-    <label for="category">Complaint Category</label>
-    <select id="category" required>
-      <option value="">Select Category</option>
-      <option>Workplace Harassment</option>
-      <option>Public Safety</option>
-      <option>Cyber Crime</option>
-    </select>
+        <div class="info-features">
+          <div class="info-feature">
+            <div class="feature-icon">
+              <i class="fa-solid fa-lock"></i>
+            </div>
+            <div>
+              <h4>256-bit Encryption</h4>
+              <p>Your data is fully protected</p>
+            </div>
+          </div>
 
-    <label for="incidentDate">Incident Date</label>
-    <input type="date" id="incidentDate" required>
+          <div class="info-feature">
+            <div class="feature-icon">
+              <i class="fa-solid fa-user-secret"></i>
+            </div>
+            <div>
+              <h4>100% Anonymous</h4>
+              <p>Identity is always hidden</p>
+            </div>
+          </div>
 
-    <label for="location">Incident Location</label>
-    <input type="text" id="location" placeholder="Enter location" required>
+          <div class="info-feature">
+            <div class="feature-icon">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <div>
+              <h4>Quick Response</h4>
+              <p>Within 48 hours</p>
+            </div>
+          </div>
+        </div>
 
-    <label for="name">Your Name</label>
-    <input type="text" id="name" placeholder="Enter your name">
+        <div class="help-box">
+          <i class="fa-solid fa-circle-question"></i>
+          <div>
+            <h4>Need Help?</h4>
+            <p>Contact our 24/7 helpline at <strong>1800-XXX-XXXX</strong></p>
+          </div>
+        </div>
+      </div>
+    </aside>
 
-    <label for="email">Email Address</label>
-    <input type="email" id="email" placeholder="Enter your email">
+    <!-- Form Container -->
+    <div class="form-wrapper">
+      <div class="form-container">
+        <div class="form-header">
+          <h2>Complaint Registration Form</h2>
+          <p>Fill in the details below to submit your complaint</p>
+        </div>
 
-    <label for="phone">Phone Number</label>
-    <input type="text" id="phone" placeholder="Enter phone number">
+        <form id="complaintForm">
+          <!-- Progress Steps -->
+          <div class="form-progress">
+            <div class="progress-step active" data-step="1">
+              <div class="step-circle">1</div>
+              <span>Incident</span>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step" data-step="2">
+              <div class="step-circle">2</div>
+              <span>Details</span>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step" data-step="3">
+              <div class="step-circle">3</div>
+              <span>Contact</span>
+            </div>
+          </div>
 
-    <label for="file">Upload Evidence (Optional)</label>
-    <input type="file" id="file" multiple>
+          <!-- Step 1: Incident Info -->
+          <div class="form-step active" id="step1">
+            <div class="form-group">
+              <label for="category">
+                <i class="fa-solid fa-tag"></i>
+                Complaint Category <span class="required">*</span>
+              </label>
+              <div class="select-wrapper">
+                <select id="category" required>
+                  <option value="">Select a category</option>
+                  <option value="Workplace Harassment">Workplace Harassment</option>
+                  <option value="Cyber Bullying">Cyber Bullying</option>
+                  <option value="Online Stalking">Online Stalking</option>
+                  <option value="Image Abuse">Image Abuse</option>
+                  <option value="Identity Theft">Identity Theft</option>
+                  <option value="Defamation">Defamation</option>
+                  <option value="Public Safety">Public Safety</option>
+                  <option value="Cyber Crime">Cyber Crime</option>
+                  <option value="Other">Other</option>
+                </select>
+                <i class="fa-solid fa-chevron-down select-arrow"></i>
+              </div>
+            </div>
 
-    <button type="submit">Submit Complaint</button>
+            <div class="form-group">
+              <label for="description">
+                <i class="fa-solid fa-align-left"></i>
+                Description of Incident <span class="required">*</span>
+              </label>
+              <textarea id="description"
+                placeholder="Please describe the incident in detail. Include what happened, when it started, and any relevant context..."
+                required></textarea>
+              <div class="char-counter"><span id="charCount">0</span>/2000 characters</div>
+            </div>
 
-  </form>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="incidentDate">
+                  <i class="fa-solid fa-calendar"></i>
+                  Incident Date <span class="required">*</span>
+                </label>
+                <input type="date" id="incidentDate" required>
+              </div>
 
-</div>
+              <div class="form-group">
+                <label for="location">
+                  <i class="fa-solid fa-location-dot"></i>
+                  Incident Location <span class="required">*</span>
+                </label>
+                <input type="text" id="location" placeholder="City, State or Online Platform" required>
+              </div>
+            </div>
+
+            <div class="form-navigation">
+              <button type="button" class="btn btn-next" onclick="nextStep(1)">
+                Continue <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2: Additional Details -->
+          <div class="form-step" id="step2">
+            <div class="form-group">
+              <label for="platform">
+                <i class="fa-solid fa-globe"></i>
+                Platform/Website (if applicable)
+              </label>
+              <input type="text" id="platform" placeholder="e.g., Facebook, Instagram, Twitter, etc.">
+            </div>
+
+            <div class="form-group">
+              <label for="accusedInfo">
+                <i class="fa-solid fa-user-slash"></i>
+                Accused Information (if known)
+              </label>
+              <textarea id="accusedInfo"
+                placeholder="Any information about the accused - name, username, profile link, etc. (Optional)"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="file">
+                <i class="fa-solid fa-paperclip"></i>
+                Upload Evidence (Optional)
+              </label>
+              <div class="file-upload" id="fileUploadArea">
+                <input type="file" id="file" multiple accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+                <div class="file-upload-content">
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                  <p>Drag and drop files here or <span>browse</span></p>
+                  <small>Supported: JPG, PNG, PDF, DOC (Max 10MB each)</small>
+                </div>
+                <div class="file-list" id="fileList"></div>
+              </div>
+            </div>
+
+            <div class="form-navigation">
+              <button type="button" class="btn btn-secondary" onclick="prevStep(2)">
+                <i class="fa-solid fa-arrow-left"></i> Back
+              </button>
+              <button type="button" class="btn btn-next" onclick="nextStep(2)">
+                Continue <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3: Contact Info -->
+          <div class="form-step" id="step3">
+            <div class="anonymous-notice">
+              <i class="fa-solid fa-user-secret"></i>
+              <div>
+                <h4>Optional Contact Information</h4>
+                <p>You can remain completely anonymous. However, providing contact details helps us reach you for
+                  updates.</p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="name">
+                <i class="fa-solid fa-user"></i>
+                Your Name (Optional)
+              </label>
+              <input type="text" id="name" placeholder="Enter your full name">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">
+                  <i class="fa-solid fa-envelope"></i>
+                  Email Address (Optional)
+                </label>
+                <input type="email" id="email" placeholder="your.email@example.com">
+              </div>
+
+              <div class="form-group">
+                <label for="phone">
+                  <i class="fa-solid fa-phone"></i>
+                  Phone Number (Optional)
+                </label>
+                <input type="tel" id="phone" placeholder="+91 XXXXX XXXXX">
+              </div>
+            </div>
+
+            <div class="consent-box">
+              <label class="checkbox-wrapper">
+                <input type="checkbox" id="consent" required>
+                <span class="checkmark"></span>
+                <span class="checkbox-text">I confirm that the information provided is true to the best of my knowledge
+                  and I consent to the processing of this complaint. <span class="required">*</span></span>
+              </label>
+            </div>
+
+            <div class="form-navigation">
+              <button type="button" class="btn btn-secondary" onclick="prevStep(3)">
+                <i class="fa-solid fa-arrow-left"></i> Back
+              </button>
+              <button type="submit" class="btn btn-submit">
+                <i class="fa-solid fa-paper-plane"></i> Submit Complaint
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Success Modal -->
+  <div class="modal" id="successModal">
+    <div class="modal-content">
+      <div class="modal-icon success">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      <h2>Complaint Submitted Successfully!</h2>
+      <p>Your complaint has been registered. Please save your tracking ID:</p>
+      <div class="tracking-id-box">
+        <span id="trackingId">XXXXXX</span>
+        <button onclick="copyTrackingId()" class="copy-btn">
+          <i class="fa-solid fa-copy"></i>
+        </button>
+      </div>
+      <p class="modal-note">Use this ID to track your complaint status</p>
+      <div class="modal-buttons">
+        <a href="track.html" class="btn btn-primary">Track Complaint</a>
+        <a href="index.html" class="btn btn-secondary">Back to Home</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Form step navigation
+    let currentStep = 1;
+
+    function nextStep(step) {
+      const currentStepElement = document.getElementById(`step${step}`);
+      const requiredFields = currentStepElement.querySelectorAll('[required]');
+      let isValid = true;
+
+      requiredFields.forEach(field => {
+        if (!field.value) {
+          field.classList.add('error');
+          isValid = false;
+        } else {
+          field.classList.remove('error');
+        }
+      });
+
+      if (!isValid) return;
+
+      currentStep = step + 1;
+      updateSteps();
+    }
+
+    function prevStep(step) {
+      currentStep = step - 1;
+      updateSteps();
+    }
+
+    function updateSteps() {
+      document.querySelectorAll('.form-step').forEach((el, index) => {
+        el.classList.toggle('active', index + 1 === currentStep);
+      });
+
+      document.querySelectorAll('.progress-step').forEach((el, index) => {
+        el.classList.toggle('active', index + 1 <= currentStep);
+        el.classList.toggle('completed', index + 1 < currentStep);
+      });
+    }
+
+    // Character counter
+    const description = document.getElementById('description');
+    const charCount = document.getElementById('charCount');
+
+    description?.addEventListener('input', () => {
+      charCount.textContent = description.value.length;
+    });
+
+    // File upload handling
+    const fileInput = document.getElementById('file');
+    const fileList = document.getElementById('fileList');
+    const fileUploadArea = document.getElementById('fileUploadArea');
+
+    fileInput?.addEventListener('change', () => {
+      updateFileList();
+    });
+
+    fileUploadArea?.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      fileUploadArea.classList.add('dragover');
+    });
+
+    fileUploadArea?.addEventListener('dragleave', () => {
+      fileUploadArea.classList.remove('dragover');
+    });
+
+    fileUploadArea?.addEventListener('drop', (e) => {
+      e.preventDefault();
+      fileUploadArea.classList.remove('dragover');
+      fileInput.files = e.dataTransfer.files;
+      updateFileList();
+    });
+
+    function updateFileList() {
+      fileList.innerHTML = '';
+      Array.from(fileInput.files).forEach(file => {
+        const fileItem = document.createElement('div');
+        fileItem.className = 'file-item';
+        fileItem.innerHTML = `
+        <i class="fa-solid fa-file"></i>
+        <span>${file.name}</span>
+        <span class="file-size">${(file.size / 1024).toFixed(1)} KB</span>
+      `;
+        fileList.appendChild(fileItem);
+      });
+    }
+
+    // Copy tracking ID
+    function copyTrackingId() {
+      const trackingId = document.getElementById('trackingId').textContent;
+      navigator.clipboard.writeText(trackingId);
+      alert('Tracking ID copied to clipboard!');
+    }
+  </script>
 
 </body>
+
 </html>

@@ -1,31 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Admin Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | She-Box Portal</title>
+    <meta name="description" content="Secure admin login portal for She-Box complaint management system.">
+
     <link rel="stylesheet" href="css/admin-login.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body class="center">
 
-<div class="login-box">
+<body>
 
-    <h2>Admin Login</h2>
+    <!-- Background Animation -->
+    <div class="bg-animation">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="particles"></div>
+    </div>
 
-    <form id="loginForm">
+    <!-- Main Container -->
+    <div class="login-container">
 
-        <input id="username" placeholder="Username" required>
+        <!-- Left Panel - Branding -->
+        <div class="branding-panel">
+            <div class="branding-content">
+                <a href="index.html" class="brand-logo">
+                    <div class="logo-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <span>She-Box</span>
+                </a>
 
-        <input id="password" type="password" placeholder="Password" required>
+                <div class="branding-text">
+                    <h1>Admin Control Center</h1>
+                    <p>Secure access to manage complaints, track cases, and ensure justice for all victims.</p>
+                </div>
 
-        <button type="submit">Login</button>
-    </form>
+                <div class="features-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <h4>Real-time Analytics</h4>
+                            <p>Monitor complaint trends and resolution rates</p>
+                        </div>
+                    </div>
 
-    <p id="error" class="error" style="display:none;">
-        Invalid username or password
-    </p>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-users-gear"></i>
+                        </div>
+                        <div>
+                            <h4>Case Management</h4>
+                            <p>Assign, track, and resolve cases efficiently</p>
+                        </div>
+                    </div>
 
-</div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-file-export"></i>
+                        </div>
+                        <div>
+                            <h4>Report Generation</h4>
+                            <p>Export detailed reports and statistics</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="security-badge">
+                    <i class="fa-solid fa-lock"></i>
+                    <span>Protected by 256-bit SSL Encryption</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel - Login Form -->
+        <div class="login-panel">
+            <div class="login-card">
+                <div class="login-header">
+                    <div class="admin-avatar">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <h2>Admin Login</h2>
+                    <p>Enter your credentials to access the dashboard</p>
+                </div>
+
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username">
+                            <i class="fa-solid fa-user"></i>
+                            Username
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" id="username" placeholder="Enter your username" autocomplete="username"
+                                required>
+                            <span class="input-focus-effect"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">
+                            <i class="fa-solid fa-lock"></i>
+                            Password
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="password" id="password" placeholder="Enter your password"
+                                autocomplete="current-password" required>
+                            <button type="button" class="toggle-password" onclick="togglePassword()">
+                                <i class="fa-solid fa-eye" id="eyeIcon"></i>
+                            </button>
+                            <span class="input-focus-effect"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" id="remember">
+                            <span class="checkmark"></span>
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-link">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="btn-login">
+                        <span>Sign In</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                    <p id="error" class="error-message" style="display:none;">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        Invalid username or password
+                    </p>
+                </form>
+
+                <div class="login-footer">
+                    <a href="index.html" class="back-link">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Back to Home
+                    </a>
+                </div>
+            </div>
+
+            <div class="login-decoration">
+                <div class="deco-circle circle-1"></div>
+                <div class="deco-circle circle-2"></div>
+                <div class="deco-circle circle-3"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin-login.js" defer></script>
+
+    <script>
+        // Toggle password visibility
+        function togglePassword() {
+            const password = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
+
+            if (password.type === 'password') {
+                password.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                password.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+
+        // Form submission
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorEl = document.getElementById('error');
+            const btn = document.querySelector('.btn-login');
+
+            // Add loading state
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>Signing in...</span>';
+            btn.disabled = true;
+
+            // Simulate authentication (replace with actual auth logic)
+            setTimeout(() => {
+                // Demo credentials: admin / admin123
+                if (username === 'admin' && password === 'admin123') {
+                    localStorage.setItem('adminLoggedIn', 'true');
+                    window.location.href = 'admin-dashboard.html';
+                } else {
+                    errorEl.style.display = 'flex';
+                    btn.innerHTML = '<span>Sign In</span> <i class="fa-solid fa-arrow-right"></i>';
+                    btn.disabled = false;
+
+                    // Shake animation
+                    document.querySelector('.login-card').classList.add('shake');
+                    setTimeout(() => {
+                        document.querySelector('.login-card').classList.remove('shake');
+                    }, 500);
+                }
+            }, 1500);
+        });
+
+        // Hide error on input
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', () => {
+                document.getElementById('error').style.display = 'none';
+            });
+        });
+    </script>
 
 </body>
+
 </html>
-
-
