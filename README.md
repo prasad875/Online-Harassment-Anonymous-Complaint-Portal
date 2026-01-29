@@ -1,5 +1,4 @@
 # Online-Harassment-Anonymous-Complaint-Portal
-# Online Harassment & Anonymous Complaint Portal - Backend
 
 ## Database Design (Member-1)
 
