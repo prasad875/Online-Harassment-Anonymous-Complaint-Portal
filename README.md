@@ -183,4 +183,8 @@ This project is developed for academic and demonstration purposes.
 
 🙌 Acknowledgements
 
+<<<<<<< HEAD
 Thanks to team members for collaboration and support during development.
+=======
+Thanks to team members for collaboration and support during development.
+>>>>>>> a89964c93a2e231096e2feb340f15a6482a2b305
